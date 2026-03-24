@@ -104,6 +104,17 @@ public class RestaurantMapper {
         doc.setNumberStreet(restaurant.getNumberStreet());
         doc.setComplement(restaurant.getComplement());
 
+        if (restaurant.getUsers() != null) {
+            doc.setUsers(
+                    restaurant.getUsers().stream()
+                            .map(u -> new RestaurantUserDocument(
+                                    u.getUserId(),
+                                    u.getRole().name()
+                            ))
+                            .toList()
+            );
+        }
+
         // opening hours
         if (restaurant.getOpeningHours() != null) {
             doc.setOpeningHours(

@@ -1,0 +1,24 @@
+extend type Query {
+    listRestaurantMenus(restaurantId: ID!): [MenuWithItems!]!
+}
+
+extend type Mutation {
+    createMenu(restaurantId: ID!, input: CreateMenuInput!): Menu!
+    deleteMenu(restaurantId: ID!, menuId: ID!): Boolean!
+}
+
+type Menu {
+    id: ID!
+    name: String!
+}
+
+type MenuWithItems {
+    menuId: ID!
+    name: String!
+    items: [MenuItem!]!
+}
+
+input CreateMenuInput {
+    name: String!
+}
+

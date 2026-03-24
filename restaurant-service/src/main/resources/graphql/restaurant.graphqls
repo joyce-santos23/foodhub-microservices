@@ -1,0 +1,90 @@
+type Query {
+    listRestaurants(page: Int!, size: Int!): PageRestaurant!
+    restaurantById(restaurantId: ID!): Restaurant!
+    listOpeningHours(restaurantId: ID!): [OpeningHours!]!
+}
+
+type Mutation {
+    createRestaurant(ownerId: ID!, input: CreateRestaurantInput!): Restaurant!
+    updateRestaurant(restaurantId: ID!, input: UpdateRestaurantInput!): Restaurant!
+    deleteRestaurant(restaurantId: ID!): Boolean!
+    addUserToRestaurant(restaurantId: ID! , userId: ID!, role: RestaurantRole!): Boolean!
+    removeUserFromRestaurant(restaurantId: ID! , userId: ID!): Boolean!
+    changeOpeningHours(restaurantId: ID!, dayOfWeek: DayOfWeek!, input: UpdateOpeningHoursInput!): Boolean!
+}
+
+type Restaurant {
+    restaurantId: ID!
+    businessName: String!
+    cnpj: String!
+    cuisineType: String!
+    ownerId: String!
+    numberStreet: String!
+    complement: String
+    address: AddressBase
+    openingHours: [OpeningHours!]
+}
+
+type PageRestaurant {
+    content: [Restaurant!]!
+    page: Int!
+    size: Int!
+    totalElements: Int!
+    totalPages: Int!
+}
+
+type OpeningHours {
+    dayOfWeek: String!
+    openingTime: String
+    closingTime: String
+    closed: Boolean!
+}
+
+type AddressBase {
+    id: ID!
+    cep: String!
+    street: String!
+    neighborhood: String!
+    city: String!
+    state: String!
+    country: String!
+}
+
+enum RestaurantRole {
+    OWNER
+    MANAGER
+    EMPLOYEE
+}
+
+enum DayOfWeek {
+    MONDAY
+    TUESDAY
+    WEDNESDAY
+    THURSDAY
+    FRIDAY
+    SATURDAY
+    SUNDAY
+}
+
+input CreateRestaurantInput {
+    businessName: String!
+    cnpj: String!
+    cuisineType: String!
+    cep: String!
+    numberStreet: String!
+    complement: String
+}
+
+input UpdateRestaurantInput {
+    businessName: String
+    cuisineType: String
+    numberStreet: String
+    complement: String
+}
+
+input UpdateOpeningHoursInput {
+    openingTime: String
+    closingTime: String
+    closed: Boolean!
+}
+

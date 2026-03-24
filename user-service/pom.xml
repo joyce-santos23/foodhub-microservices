@@ -40,10 +40,21 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- OPENFEIGN -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- TEST (UM SÓ BASTA) -->
@@ -60,6 +71,26 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>br.com.foodhub</groupId>
+            <artifactId>foodhub-contracts</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.grpc</groupId>
+            <artifactId>spring-grpc-server-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-services</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-graphql</artifactId>
+        </dependency>
     </dependencies>
 
 	<build>
@@ -72,6 +103,7 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+                            <version>1.18.32</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>

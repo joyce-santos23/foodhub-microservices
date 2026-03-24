@@ -12,6 +12,8 @@ public class PasswordHasherGatewayImpl implements PasswordHasherGateway {
 
     @Override
     public String hash(String rawPassword) {
-        return passwordEncoder.encode(rawPassword);
+        String encoded = passwordEncoder.encode(rawPassword);
+        System.out.println("HASH GERADO: " + encoded);
+        return encoded;
     }
 }

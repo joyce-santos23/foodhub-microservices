@@ -1,0 +1,47 @@
+type Query {
+    orderById(orderId: ID!): Order!
+    listOrdersByUser(userId: ID!, page: Int!, size: Int!): PageOrder!
+}
+
+type Mutation {
+    createOrder(input: CreateOrderInput!): Order!
+    confirmOrder(orderId: ID!): Order
+    cancelOrder(orderId: ID!): Boolean!
+}
+
+
+type Order {
+    id: ID!
+    userId: ID!
+    restaurantId: ID!
+    status: String!
+    totalAmount: Float!
+    items: [OrderItem!]!
+}
+
+type OrderItem {
+    productId: ID!
+    name: String!
+    quantity: Int!
+    price: Float!
+}
+
+type PageOrder {
+    content: [Order!]!
+    page: Int!
+    size: Int!
+    totalElements: Int!
+    totalPages: Int!
+}
+
+input CreateOrderItemInput {
+    productId: ID!
+    quantity: Int!
+}
+
+input CreateOrderInput {
+    restaurantId: ID!
+    menuId: ID!
+    items: [CreateOrderItemInput!]!
+}
+

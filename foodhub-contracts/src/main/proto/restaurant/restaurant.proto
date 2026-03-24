@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package restaurant;
+
+option java_multiple_files = true;
+option java_package = "br.com.foodhub.contracts.restaurant";
+
+service RestaurantService {
+
+  rpc ValidateRestaurant (ValidateRestaurantRequest)
+      returns (ValidateRestaurantResponse);
+
+  rpc FindMenuItems (MenuItemsRequest)
+      returns (MenuItemsResponse);
+
+  rpc IsUserLinkedToRestaurant (UserRestaurantRequest)
+      returns (UserRestaurantResponse);
+}
+
+message ValidateRestaurantRequest {
+
+  string restaurantId = 1;
+
+}
+
+message ValidateRestaurantResponse {
+
+  bool exists = 1;
+
+}
+
+
+message MenuItemsRequest {
+
+  string restaurantId = 1;
+  string menuId = 2;
+
+  repeated string itemIds = 3;
+
+}
+
+message MenuItem {
+
+  string id = 1;
+  string name = 2;
+  double price = 3;
+
+}
+
+message MenuItemsResponse {
+
+  repeated MenuItem items = 1;
+
+}
+
+message UserRestaurantRequest {
+  string userId = 1;
+  string restaurantId = 2;
+}
+
+message UserRestaurantResponse {
+  bool linked = 1;
+}

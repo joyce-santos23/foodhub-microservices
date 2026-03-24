@@ -17,7 +17,7 @@ public class Menu {
     private List<MenuItem> items;
 
     public Menu(String name) {
-        this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString().replace("-","");
         this.name = require(name, "Nome do menu");
         this.items = new ArrayList<>();
     }

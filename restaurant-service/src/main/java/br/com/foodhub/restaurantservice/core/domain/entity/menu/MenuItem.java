@@ -27,7 +27,7 @@ public class MenuItem {
             boolean inRestaurantOnly,
             String photograph
     ) {
-        this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString().replace("-","");
         this.name = require(name, "Nome do item").trim().toUpperCase();
         this.description = description;
         this.price = validatePrice(require(price, "Preço"));

@@ -6,8 +6,10 @@ import br.com.foodhub.userservice.core.domain.entity.user.UserType;
 import br.com.foodhub.userservice.core.domain.exceptions.generic.BusinessRuleViolationException;
 import br.com.foodhub.userservice.core.domain.exceptions.generic.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class DeleteUserTypeUseCase {
@@ -16,6 +18,8 @@ public class DeleteUserTypeUseCase {
     private final UserGateway userGateway;
 
     public void execute(String userTypeId) {
+
+        log.info("Removendo tipo usuario" + userTypeId);
 
         UserType type = gateway.findById(userTypeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Tipo de usuário não encontrado.")

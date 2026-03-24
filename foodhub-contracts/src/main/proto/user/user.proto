@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package user;
+
+option java_multiple_files = true;
+option java_package = "br.com.foodhub.contracts.user";
+
+service UserService {
+
+  rpc CanCreateRestaurant (CanCreateRestaurantRequest)
+      returns (CanCreateRestaurantResponse);
+
+  rpc FindOrCreateAddressByCep (AddressByCepRequest)
+      returns (AddressResponse);
+
+  rpc GetAddressById(AddressByIdRequest)
+      returns (AddressResponse);
+
+  rpc GetUserByEmail (GetUserByEmailRequest)
+      returns (GetUserByEmailResponse);
+
+}
+
+message CanCreateRestaurantRequest {
+  string userId = 1;
+}
+
+message CanCreateRestaurantResponse {
+  bool allowed = 1;
+}
+
+message AddressByCepRequest {
+  string cep = 1;
+}
+
+message AddressByIdRequest {
+  string id = 1;
+}
+message GetUserByEmailRequest {
+  string email = 1;
+}
+message GetUserByEmailResponse {
+  string id = 1;
+  string email = 2;
+  string password = 3;
+  string role = 4;
+}
+
+message AddressResponse {
+  string id = 1;
+  string cep = 2;
+  string street = 3;
+  string neighborhood = 4;
+  string city = 5;
+  string state = 6;
+  string country = 7;
+}

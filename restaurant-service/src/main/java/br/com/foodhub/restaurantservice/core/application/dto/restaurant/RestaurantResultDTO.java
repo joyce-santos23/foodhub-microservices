@@ -1,7 +1,6 @@
 package br.com.foodhub.restaurantservice.core.application.dto.restaurant;
 
 import br.com.foodhub.restaurantservice.core.application.dto.restaurant.openingHour.OpeningHoursDTO;
-import br.com.foodhub.restaurantservice.core.domain.entity.restaurant.OpeningHours;
 import br.com.foodhub.restaurantservice.core.domain.entity.restaurant.Restaurant;
 
 import java.util.List;

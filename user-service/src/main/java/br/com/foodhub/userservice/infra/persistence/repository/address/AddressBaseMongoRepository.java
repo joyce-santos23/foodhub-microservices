@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface AddressBaseMongoRepository extends MongoRepository<AddressBaseDocument, String> {
     Optional<AddressBaseDocument> findByCep(String cep);
+
+    boolean existsByCep(String cep);
 }

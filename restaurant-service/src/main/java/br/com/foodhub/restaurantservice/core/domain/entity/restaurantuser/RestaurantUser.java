@@ -20,11 +20,4 @@ public class RestaurantUser {
         this.userId = userId;
         this.role = role;
     }
-
-    public void changeRole(RestaurantRole newRole) {
-        if (newRole == null) {
-            throw new RequiredFieldException("Novo papel");
-        }
-        this.role = newRole;
-    }
 }

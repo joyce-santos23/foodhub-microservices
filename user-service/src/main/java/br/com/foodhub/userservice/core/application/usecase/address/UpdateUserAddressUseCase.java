@@ -8,8 +8,10 @@ import br.com.foodhub.userservice.core.domain.entity.user.User;
 import br.com.foodhub.userservice.core.domain.exceptions.generic.ResourceNotFoundException;
 import br.com.foodhub.userservice.core.domain.exceptions.user.AddressNotBelongsToUserException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UpdateUserAddressUseCase {
@@ -21,6 +23,7 @@ public class UpdateUserAddressUseCase {
             String userAddressId,
             UpdateUserAddressDTO dto
             ) {
+        log.info("Atualizando endereço: " + userAddressId);
 
         User user = gateway.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException(

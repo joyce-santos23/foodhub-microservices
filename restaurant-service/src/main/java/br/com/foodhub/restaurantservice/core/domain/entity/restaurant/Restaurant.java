@@ -7,12 +7,14 @@ import br.com.foodhub.restaurantservice.core.domain.exceptions.generic.BusinessR
 import br.com.foodhub.restaurantservice.core.domain.exceptions.generic.RequiredFieldException;
 import br.com.foodhub.restaurantservice.core.domain.exceptions.generic.ResourceNotFoundException;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 
 @Getter
 public class Restaurant {
@@ -38,6 +40,7 @@ public class Restaurant {
             String complement,
             String ownerUserId
     ) {
+        this.id = UUID.randomUUID().toString().replace("-","");
         this.businessName = require(businessName, "Nome do restaurante");
         this.cnpj = normalizeCnpj(require(cnpj, "CNPJ"));
         this.cuisineType = require(cuisineType, "Tipo de cozinha");
@@ -65,7 +68,7 @@ public class Restaurant {
             List<Menu> menus,
             List<RestaurantUser> users
     ) {
-        this.id = UUID.randomUUID().toString();
+        this.id = id;
         this.businessName = businessName;
         this.cnpj = cnpj;
         this.cuisineType = cuisineType;
@@ -129,22 +132,6 @@ public class Restaurant {
         users.add(new RestaurantUser(userId, role));
     }
 
-    public void changeUserRole(String userId, RestaurantRole newRole) {
-
-        RestaurantUser user = users.stream()
-                .filter(u -> u.getUserId().equals(userId))
-                .findFirst()
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Usuário não associado ao restaurante")
-                );
-
-        if (newRole == RestaurantRole.OWNER && hasOwner()) {
-            throw new BusinessRuleViolationException("Restaurante já possui dono");
-        }
-
-        user.changeRole(newRole);
-    }
-
     public void removeUser(String userId) {
 
         RestaurantUser user = users.stream()
@@ -161,6 +148,7 @@ public class Restaurant {
         users.remove(user);
     }
 
+
     public String getOwnerId() {
         return users.stream()
                 .filter(user -> user.getRole() == RestaurantRole.OWNER)
@@ -176,20 +164,19 @@ public class Restaurant {
                 .anyMatch(u -> u.getRole() == RestaurantRole.OWNER);
     }
 
+    public boolean hasUser(String userId) {
+        return users.stream()
+                .anyMatch(u -> u.getUserId().equals(userId));
+    }
+
     public void ensureUserCanManage(String userId) {
 
-        RestaurantUser user = users.stream()
-                .filter(u -> u.getUserId().equals(userId))
-                .findFirst()
-                .orElseThrow(() ->
-                        new BusinessRuleViolationException(
-                                "Usuário não pertence ao restaurante"
-                        )
-                );
+        System.out.println("Validando userId: " + userId);
+        System.out.println("Users: " + users);
 
-        if (user.getRole() == RestaurantRole.EMPLOYEE) {
+        if (!hasUser(userId)) {
             throw new BusinessRuleViolationException(
-                    "Usuário não possui permissão para gerenciar restaurante"
+                    "Usuário não pertence ao restaurante"
             );
         }
     }
@@ -200,10 +187,22 @@ public class Restaurant {
             String numberStreet,
             String complement
     ) {
-        this.businessName = require(businessName, "Nome do restaurante");
-        this.cuisineType = require(cuisineType, "Tipo de cozinha");
-        this.numberStreet = require(numberStreet, "Número");
-        this.complement = complement;
+
+        if (businessName != null && !businessName.isBlank()) {
+            this.businessName = require(businessName, "Nome do restaurante");
+        }
+
+        if (cuisineType != null && !cuisineType.isBlank()) {
+            this.cuisineType = require(cuisineType, "Tipo de cozinha");
+        }
+
+        if (numberStreet != null && !numberStreet.isBlank()) {
+            this.numberStreet = require(numberStreet, "Número");
+        }
+
+        if (complement != null && !complement.isBlank()) {
+            this.complement = complement;
+        }
     }
 
     public void addMenu(Menu menu) {

@@ -4,6 +4,8 @@ import br.com.foodhub.userservice.core.domain.exceptions.generic.BusinessRuleVio
 import br.com.foodhub.userservice.core.domain.exceptions.generic.RequiredFieldException;
 import lombok.Getter;
 
+import java.util.UUID;
+
 @Getter
 public class UserType {
 
@@ -16,7 +18,7 @@ public class UserType {
     }
 
     public UserType(String name) {
-        this(null, name);
+        this(UUID.randomUUID().toString().replace("-", ""), name);
     }
 
     public static UserType reconstitute(String id, String name) {

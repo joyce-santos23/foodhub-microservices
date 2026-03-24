@@ -7,10 +7,11 @@ import br.com.foodhub.restaurantservice.core.application.port.restaurant.Restaur
 import br.com.foodhub.restaurantservice.core.application.port.user.UserIntegrationPort;
 import br.com.foodhub.restaurantservice.core.domain.entity.restaurant.Restaurant;
 import br.com.foodhub.restaurantservice.core.domain.exceptions.generic.BusinessRuleViolationException;
-import br.com.foodhub.restaurantservice.core.domain.exceptions.generic.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CreateRestaurantUseCase {
@@ -20,10 +21,7 @@ public class CreateRestaurantUseCase {
     private final AddressIntegrationPort addressIntegrationPort;
 
     public RestaurantResultDTO execute(String ownerId, RestaurantRequestDTO dto) {
-
-        if (!userIntegrationPort.existsById(ownerId)) {
-            throw new ResourceNotFoundException("Usuário não encontrado");
-        }
+        log.info("Criando restaurante");
 
         if (!userIntegrationPort.canCreateRestaurant(ownerId)) {
             throw new BusinessRuleViolationException(

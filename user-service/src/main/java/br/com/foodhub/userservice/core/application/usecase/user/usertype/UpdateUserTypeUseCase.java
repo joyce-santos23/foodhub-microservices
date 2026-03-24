@@ -7,8 +7,10 @@ import br.com.foodhub.userservice.core.domain.entity.user.UserType;
 import br.com.foodhub.userservice.core.domain.exceptions.generic.BusinessRuleViolationException;
 import br.com.foodhub.userservice.core.domain.exceptions.generic.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UpdateUserTypeUseCase {
@@ -16,6 +18,7 @@ public class UpdateUserTypeUseCase {
     private final UserTypeGateway gateway;
 
     public UserTypeResultDTO execute(String id, UserTypeRequestDTO dto) {
+        log.info("Atualizando tipo usuario");
 
         UserType type = gateway.findById(id)
                 .orElseThrow(() ->

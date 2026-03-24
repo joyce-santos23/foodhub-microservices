@@ -1,0 +1,38 @@
+type AddressBase {
+    cep: String!
+    street: String!
+    neighborhood: String!
+    city: String!
+    state: String!
+    country: String!
+}
+type UserAddress {
+    id: ID!
+    number: String!
+    complement: String
+    primary: Boolean!
+    address: AddressBase!
+}
+
+input CreateUserAddressInput {
+    cep: String!
+    number: String!
+    complement: String
+    primary: Boolean!
+}
+
+input UpdateUserAddressInput {
+    number: String!
+    complement: String
+    primary: Boolean!
+}
+
+extend type Query {
+    listUserAddresses: [UserAddress!]!
+}
+
+extend type Mutation {
+    createUserAddress(input: CreateUserAddressInput!): UserAddress!
+    updateUserAddress(addressId: ID!, input: UpdateUserAddressInput!): UserAddress!
+    deleteUserAddress(addressId: ID!): Boolean!
+}

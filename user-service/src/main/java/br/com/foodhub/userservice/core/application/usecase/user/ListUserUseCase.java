@@ -7,10 +7,12 @@ import br.com.foodhub.userservice.core.application.port.user.UserGateway;
 
 import br.com.foodhub.userservice.core.domain.entity.user.User;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ListUserUseCase {
@@ -18,6 +20,7 @@ public class ListUserUseCase {
     private final UserGateway gateway;
 
     public PageResultDTO<UserResultDTO> execute(PageRequestDTO dto) {
+        log.info("Iniciando lista de usuarios de usuários");
 
         PageResultDTO<User> page = gateway.findAll(dto.page(), dto.size());
 

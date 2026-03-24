@@ -7,8 +7,10 @@ import br.com.foodhub.userservice.core.domain.entity.user.User;
 import br.com.foodhub.userservice.core.domain.exceptions.generic.ResourceConflictException;
 import br.com.foodhub.userservice.core.domain.exceptions.generic.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UpdateUserUseCase {
@@ -16,6 +18,7 @@ public class UpdateUserUseCase {
     private final UserGateway gateway;
 
     public UserResultDTO execute(UpdateUserDTO dto, String id) {
+        log.info("Atualizando usuário: " + id);
 
         User user = gateway.findById(id)
                 .orElseThrow(() ->

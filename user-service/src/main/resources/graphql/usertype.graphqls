@@ -1,0 +1,18 @@
+extend type Mutation {
+  createUserType(input: UserTypeInput): UserType
+  updateUserType(id: ID!, input: UserTypeInput): UserType
+  deleteUserType(id: ID!): Boolean
+}
+
+extend type Query {
+  listUserTypes: [UserType]
+}
+
+input UserTypeInput {
+  name: String!
+}
+
+type UserType {
+  id: ID
+  name: String
+}

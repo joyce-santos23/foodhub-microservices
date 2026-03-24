@@ -92,4 +92,17 @@ public class UserGatewayImpl implements UserGateway {
     public boolean existsUserWithUserType(String userTypeId) {
         return repository.existsByUserTypeId(userTypeId);
     }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+
+        return repository.findByEmail(email)
+                .map(doc -> {
+                    UserType userType = userTypeGateway
+                            .findById(doc.getUserTypeId())
+                            .orElseThrow(() -> new RuntimeException("UserType não encontrado"));
+
+                    return mapper.toDomain(doc, userType);
+                });
+    }
 }

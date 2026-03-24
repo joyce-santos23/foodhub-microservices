@@ -8,6 +8,7 @@ import br.com.foodhub.restaurantservice.infra.persistence.repository.restaurant.
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class RestaurantGatewayImpl implements RestaurantGateway {
     private final RestaurantMongoRepository repository;
     private final RestaurantMapper mapper;
 
+    @Transactional
     @Override
     public Restaurant save(Restaurant restaurant) {
         var document = mapper.toDocument(restaurant);

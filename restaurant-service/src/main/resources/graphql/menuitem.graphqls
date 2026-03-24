@@ -1,0 +1,29 @@
+extend type Mutation {
+
+    createMenuItem(restaurantId: ID!, menuId: ID!, input: MenuItemInput!): MenuItem!
+    updateMenuItem(restaurantId: ID!, menuId: ID!, menuItemId: ID!, input: MenuItemInput!): MenuItem!
+    deleteMenuItem(restaurantId: ID!, menuId: ID!, menuItemId: ID!): Boolean!
+}
+
+extend type Query {
+
+    menuItemById( restaurantId: ID!, menuId: ID!, menuItemId: ID!): MenuItem!
+}
+
+type MenuItem {
+    id: ID!
+    name: String!
+    description: String
+    price: Float!
+    inRestaurantOnly: Boolean!
+    photograph: String
+}
+
+input MenuItemInput {
+    name: String!
+    description: String
+    price: Float!
+    inRestaurantOnly: Boolean!
+    photograph: String
+}
+

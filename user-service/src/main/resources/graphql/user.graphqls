@@ -1,0 +1,41 @@
+type Query {
+  listUsers(page: Int, size: Int): UserPage
+  me: User!
+}
+
+type Mutation {
+  createUser(input: CreateUserInput): User
+  updateUser(input: UpdateUserInput): User
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  phone: String!
+  cpf: String
+  password: String!
+  userTypeId: String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  phone: String
+}
+
+type User {
+  id: String
+  name: String
+  email: String
+  phone: String
+  cpf: String
+  userType: UserType
+}
+
+type UserPage {
+  content: [User]
+  page: Int
+  size: Int
+  totalElements: Int
+  totalPages: Int
+}

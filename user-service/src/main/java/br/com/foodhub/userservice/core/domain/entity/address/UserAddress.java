@@ -31,7 +31,7 @@ public class UserAddress {
             String complement,
             boolean primary
     ) {
-        this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString().replace("-", "");
         this.userId = require(userId, "Usuário");
         this.addressId = require(addressId, "Endereço");
         this.number = require(number, "Número");
