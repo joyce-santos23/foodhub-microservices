@@ -1,0 +1,71 @@
+@startuml
+actor Cliente
+
+participant "Auth Service" as Auth
+participant "Order Service" as Order
+participant "User Service" as User
+participant "Restaurant Service" as Restaurant
+participant "Kafka" as Kafka
+participant "Payment Service" as Payment
+participant "Pagamento Externo" as External
+
+== LOGIN ==
+Cliente -> Auth : Login
+Auth --> Cliente : JWT
+
+== CRIAÇÃO DO PEDIDO ==
+Cliente -> Order : Criar Pedido (JWT)
+
+Order -> User : Validar usuário (gRPC)
+Order -> Restaurant : Buscar itens/menu (gRPC)
+
+Order -> Order : Calcula total
+Order -> Order : Status = CRIADO
+
+Order --> Cliente : Retorna pedido (ID + total)
+
+== CONFIRMAÇÃO DO PEDIDO ==
+Cliente -> Order : Confirmar Pedido (orderId)
+
+Order -> Order : Status = CONFIRMADO
+
+Order -> Kafka : Publica evento PedidoConfirmado
+
+Kafka -> Payment : Entrega evento
+
+== PROCESSAMENTO DE PAGAMENTO ==
+
+Payment -> External : Processar pagamento
+
+alt Pagamento OK
+    External --> Payment : Aprovado
+
+    Payment -> Kafka : Publica evento PagamentoAprovado
+
+    Kafka -> Order : Entrega evento
+
+    Order -> Order : Status = PAGO
+
+else Falha / Timeout
+    External --> Payment : Erro / Timeout
+
+    Payment -> Kafka : Publica evento PagamentoPendente
+
+    Kafka -> Order : Entrega evento
+
+    Order -> Order : Status = PENDENTE_PAGAMENTO
+
+    loop Reprocessamento automático
+        Payment -> External : Tentar novamente
+        External --> Payment : Aprovado
+
+        Payment -> Kafka : Publica evento PagamentoAprovado
+        Kafka -> Order : Entrega evento
+
+        Order -> Order : Atualiza para PAGO
+    end
+end
+
+Order --> Cliente : Retorna status atualizado
+
+@enduml

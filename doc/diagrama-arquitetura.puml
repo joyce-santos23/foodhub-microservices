@@ -1,0 +1,57 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(cliente, "Usuário", "Cliente ou gestor de restaurante")
+
+System_Boundary(foodhub, "FoodHub System") {
+
+    Container(auth_service, "Auth Service", "Spring Boot", "Autenticação e geração de JWT")
+
+    Container(user_service, "User Service", "Spring Boot", "Gerencia usuários, tipos e endereços")
+
+    Container(restaurant_service, "Restaurant Service", "Spring Boot", "Gerencia restaurantes, menus e itens")
+
+    Container(order_service, "Order Service", "Spring Boot", "Gerencia pedidos e status de pagamento")
+
+    Container(payment_service, "Payment Service", "Spring Boot", "Processa pagamentos via serviço externo")
+
+    ContainerDb(user_db, "User DB", "MongoDB", "Banco do User Service")
+    ContainerDb(restaurant_db, "Restaurant DB", "MongoDB", "Banco do Restaurant Service")
+    ContainerDb(order_db, "Order DB", "MongoDB", "Banco do Order Service")
+
+    Container(kafka, "Kafka", "Message Broker", "Comunicação assíncrona entre serviços")
+
+    Container(external_payment, "Pagamento Externo", "API Externa", "Serviço externo de pagamento")
+}
+
+' ===== INTERAÇÕES DO USUÁRIO =====
+
+Rel(cliente, auth_service, "Login / recebe JWT")
+Rel(cliente, user_service, "Gerencia dados")
+Rel(cliente, restaurant_service, "Gerencia restaurantes")
+Rel(cliente, order_service, "Cria e consulta pedidos")
+
+' ===== COMUNICAÇÃO SÍNCRONA =====
+
+Rel(order_service, user_service, "Consulta usuário (gRPC)")
+Rel(order_service, restaurant_service, "Consulta menu (gRPC)")
+
+' ===== COMUNICAÇÃO ASSÍNCRONA (KAFKA) =====
+
+Rel(order_service, kafka, "Publica evento: PedidoConfirmado")
+Rel(kafka, payment_service, "Consome evento")
+
+Rel(payment_service, kafka, "Publica evento: PagamentoProcessado")
+Rel(kafka, order_service, "Consome evento")
+
+' ===== PAGAMENTO EXTERNO =====
+
+Rel(payment_service, external_payment, "Processa pagamento")
+
+' ===== BANCOS =====
+
+Rel(user_service, user_db, "CRUD")
+Rel(restaurant_service, restaurant_db, "CRUD")
+Rel(order_service, order_db, "CRUD (inclui status pagamento)")
+
+@enduml

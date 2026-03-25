@@ -29,7 +29,6 @@ public class UserResolver {
     private final UpdateUserUseCase updateUserUseCase;
     private final ListUserUseCase listUserUseCase;
     private final GetUserByIdUseCase getUserByIdUseCase;
-    private final GetUserByEmailUseCase getUserByEmailUseCase;
 
     @MutationMapping
     public UserResponsePayload createUser(@Argument @Valid CreateUserInput input) {

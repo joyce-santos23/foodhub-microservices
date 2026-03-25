@@ -1,0 +1,1094 @@
+{
+  "info": {
+    "_postman_id": "8cd6de64-d892-463b-a230-6f18bcc2eeb2",
+    "name": "foodhub-clean-arch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43260270",
+    "_collection_link": "https://go.postman.co/collection/43260270-8cd6de64-d892-463b-a230-6f18bcc2eeb2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "jsonválido",
+          "item": [
+            {
+              "name": "getUser",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/users?page=0&size=10",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "postUser",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"phone\": \"41999999999\",\r\n  \"password\": \"senha123\",\r\n  \"cpf\": \"123.456.789-09\",\r\n  \"userTypeId\": \"64f9c0c2a8b7e12f9b0e1234\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/users",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "patchUser",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"João Atualizado\",\r\n  \"email\": \"joao@email.com\",\r\n  \"phone\": \"41988888888\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/users/{userId}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    "{userId}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "jsoninválido",
+          "item": [
+            {
+              "name": "postUserInválido",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"João da Silva\",\r\n  \"email\": \"\",\r\n  \"phone\": \"\",\r\n  \"password\": \"senha123\",\r\n  \"cpf\": \"123.456.789-09\",\r\n  \"userTypeId\": \"64f9c0c2a8b7e12f9b0e1234\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/users",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "usertype",
+      "item": [
+        {
+          "name": "jsonválido",
+          "item": [
+            {
+              "name": "getUserType",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/user-types",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user-types"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "postUserType",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"string\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/user-types",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user-types"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "putUserType",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"string\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/user-types",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user-types"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "deleteUserType",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"string\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/user-types/{usertypeid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user-types",
+                    "{usertypeid}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "jsoninválido",
+          "item": [
+            {
+              "name": "postUserTypeInválido",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/user-types",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user-types"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "userrestaurant",
+      "item": [
+        {
+          "name": "jsonválido",
+          "item": [
+            {
+              "name": "postUserRestaurant",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"restaurantId\": \"69697bfb4a50530b33363161\",\r\n    \"userTypeId\": \"69697bfb4a50530b33363161\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/users/{userid}/restaurants",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    "{userid}",
+                    "restaurants"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "deleteUserRestaurant",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/users/{userid}/restaurants/{restaurantid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    "{userid}",
+                    "restaurants",
+                    "{restaurantid}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "jsonInválido",
+          "item": [
+            {
+              "name": "postUserRestaurantInválido",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"restaurantId\": \"\",\r\n    \"userTypeId\": \"69697bfb4a50530b33363161\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/users/{userid}/restaurants",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    "{userid}",
+                    "restaurants"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "useraddress",
+      "item": [
+        {
+          "name": "jsonválido",
+          "item": [
+            {
+              "name": "getUserAddress",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/users/{userid}/addresses",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    "{userid}",
+                    "addresses"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "putUserAddress",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"number\": \"123\",\r\n    \"complement\": \"Apto 301\",\r\n    \"primary\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/users/{userid}/addresses/{useraddressid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    "{userid}",
+                    "addresses",
+                    "{useraddressid}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "deleteUserAddress",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/users/{userid}/addresses/{useraddressid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    "{userid}",
+                    "addresses",
+                    "{useraddressid}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "postUserAddress",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cep\": \"81880-390\",\r\n    \"number\": \"123\",\r\n    \"complement\": \"Apto 301\",\r\n    \"primary\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/users/{userid}/addresses",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    "{userid}",
+                    "addresses"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "jsoninválido",
+          "item": [
+            {
+              "name": "postUserAddressinválido",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cep\": \"\",\r\n    \"number\": \"\",\r\n    \"complement\": \"Apto 301\",\r\n    \"primary\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/users/{userid}/addresses",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    "{userid}",
+                    "addresses"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "restaurant",
+      "item": [
+        {
+          "name": "jsonválido",
+          "item": [
+            {
+              "name": "getRestaurants",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/restaurants?page=0&size=10",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getRestaurantById",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "postRestaurant",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"businessName\": \"Pizzaria Napoli\",\r\n    \"cnpj\": \"12.345.678/0001-90\",\r\n    \"cuisineType\": \"Italiana\",\r\n    \"cep\": \"81883-400\",\r\n    \"numberStreet\": \"450\",\r\n    \"complement\": \"Loja 2\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "putRestaurant",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "[userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"businessName\": \"Pizzaria Napoli\",\r\n    \"cuisineType\": \"Italiana\",\r\n    \"numberStreet\": \"450\",\r\n    \"complement\": \"Loja 2\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "deleteRestaurant",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "jsoninválido",
+          "item": [
+            {
+              "name": "postRestaurantInválido",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"businessName\": \"\",\r\n    \"cnpj\": \"\",\r\n    \"cuisineType\": \"Italiana\",\r\n    \"cep\": \"81883-400\",\r\n    \"numberStreet\": \"450\",\r\n    \"complement\": \"Loja 2\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "menu",
+      "item": [
+        {
+          "name": "jsonválido",
+          "item": [
+            {
+              "name": "getMenu",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/menus",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "menus"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "postMenu",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Cardápio Principal\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/menus",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "menus"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "deleteMenu",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/menus/{menuid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "menus",
+                    "{menuid}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "jsoninválido",
+          "item": [
+            {
+              "name": "postMenuInválido",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Cardápio Principal\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/menus",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "menus"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "menuitem",
+      "item": [
+        {
+          "name": "jsonválido",
+          "item": [
+            {
+              "name": "getMenuItem",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Cardápio Principal\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/menus/{menuid}/items/{menuitemid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "menus",
+                    "{menuid}",
+                    "items",
+                    "{menuitemid}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "putMenuItem",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Pizza Margherita\",\r\n    \"description\": \"Pizza com molho de tomate, mussarela e manjericão\",\r\n    \"price\": 49.9,\r\n    \"inRestaurantOnly\": false,\r\n    \"photograph\": \"https://cdn.foodhub.com/items/pizza.jpg\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/menus/{menuid}/items/{menuitemid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "menus",
+                    "{menuid}",
+                    "items",
+                    "{menuitemid}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "postMenuItem",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Pizza Margherita\",\r\n    \"description\": \"Pizza com molho de tomate, mussarela e manjericão\",\r\n    \"price\": 49.9,\r\n    \"inRestaurantOnly\": false,\r\n    \"photograph\": \"https://cdn.foodhub.com/items/pizza.jpg\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/menus/{menuid}/items",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "menus",
+                    "{menuid}",
+                    "items"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "deleteMenuItem",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/menus/{menuid}/items/{menuitemid}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "menus",
+                    "{menuid}",
+                    "items",
+                    "{menuitemid}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "jsoninválido",
+          "item": [
+            {
+              "name": "postMenuItem Copy",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"Pizza com molho de tomate, mussarela e manjericão\",\r\n    \"price\": 49.9,\r\n    \"inRestaurantOnly\": false,\r\n    \"photograph\": \"https://cdn.foodhub.com/items/pizza.jpg\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/menus/{menuid}/items",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "menus",
+                    "{menuid}",
+                    "items"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "openinghour",
+      "item": [
+        {
+          "name": "jsonválido",
+          "item": [
+            {
+              "name": "getOpeningHour",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/opening-hours",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "opening-hours"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "putOpeningHour",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"openingTime\": \"08:00\",\r\n  \"closingTime\": \"18:00\",\r\n  \"closed\": false\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/opening-hours/{dayofweek}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "opening-hours",
+                    "{dayofweek}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "jsoninválido",
+          "item": [
+            {
+              "name": "putOpeningHourInválido",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "X-User-Id",
+                    "value": "{userid}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"openingTime\": \"18:00\",\r\n  \"closingTime\": \"08:00\",\r\n  \"closed\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/restaurants/{restaurantid}/opening-hours/{dayofweek}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "restaurants",
+                    "{restaurantid}",
+                    "opening-hours",
+                    "{dayofweek}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
